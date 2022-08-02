@@ -38,7 +38,7 @@ FULL_rgs <- combineArrays(BC450k_rgs, EPIC_rgs, outType="IlluminaHumanMethylatio
 #generate full QC report
 qcReport(FULL_rgs, pdf= "FULL_QC.pdf")
 qcReport(EPIC_rgs, pdf="EPIC_QC.pdf")
-#if samples of CpGs fail, have a bad profile, ... -> remove
+#if samples or CpGs fail, have a bad profile, ... -> remove
 
 #compute failed positions
 detP <- detectionP(FULL_rgs)
