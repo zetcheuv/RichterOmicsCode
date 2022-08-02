@@ -27,6 +27,6 @@ CLL_score_mean <- -2.074467
 CLL_score_sd <- 0.5114767
 
 # for each RS sample, compute the P-value to classify in DLBCL space p(S in DLBCL), ie to be "DLBCL-like RS" 
-DLBCLlike_pvalue <- sapply(sort(scoresMEAN), function(x) dnorm(x, DLBCL_score_mean, DLBCL_score_sd) / (dnorm(x, DLBCL_score_mean, DLBCL_score_sd) + dnorm(x, CLL_score_mean, CLL_score_sd))
+DLBCLlike_pvalue <- sapply(sort(scoresMEAN), function(x) dnorm(x, DLBCL_score_mean, DLBCL_score_sd) / (dnorm(x, DLBCL_score_mean, DLBCL_score_sd) + dnorm(x, CLL_score_mean, CLL_score_sd)))
 # alternatively, one can compute the 1 - p(S in DLBCL), ie for each RS sample, compute the associated P-value to be "highCLL-derived RS" 
-CLLderived_pvalue <- sapply(sort(scoresMEAN), function(x) dnorm(x, CLL_score_mean, CLL_score_sd) / (dnorm(x, DLBCL_score_mean, DLBCL_score_sd) + dnorm(x, CLL_score_mean, CLL_score_sd))
+CLLderived_pvalue <- sapply(sort(scoresMEAN), function(x) dnorm(x, CLL_score_mean, CLL_score_sd) / (dnorm(x, DLBCL_score_mean, DLBCL_score_sd) + dnorm(x, CLL_score_mean, CLL_score_sd)))
