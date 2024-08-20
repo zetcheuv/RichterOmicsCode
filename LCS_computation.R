@@ -27,7 +27,8 @@ TRANS_scoring <- TRANS_scoring[names(scoringSig),]
 # 1) standardize the data
 TRANS_scoring <- t(scale(t(TRANS_scoring)))
 # 2) remove the last permille (upper outlier effect dampening, the lowest outliers have no other effect than diminishing the scores)
-TRANS_scoring[TRANS_scoring > quantile(,0.999)] <- quantile(TRANS_scoring,0.999)
+# OPTIONAL - may be useful for big signatures, a bit less for small ones
+#TRANS_scoring[TRANS_scoring > quantile(TRANS_scoring,0.999)] <- quantile(TRANS_scoring,0.999)
 # 3) apply LCS over samples. LCS is dependant on the dataset (constitution, size, quality, ...)
 scores <- apply(TRANS_scoring, 2, function(x) mean(x * scoringSig) )
 # 4) compute Zscores from the scores, these will be more comparable across datasets
