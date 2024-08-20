@@ -7,13 +7,13 @@
 
 # TRANS: a matrix containing transcriptomic data, with gene names as rownames (can be duplicated)
 stopifnot(is.matrix(TRANS))
-# scoringSig215: a table with 215 gene names in column 1 and weights column 2
+# scoringSig215: a vector of weights named with 215 gene names
 scoringSig215 <- c(rep(-1,93), rep(1,122))
 names(scoringSig215) <- read.delim("LCS_215genesig.txt", stringsAsFactors=F)[,2]
 
 #reduce the transcriptome to the 215 genes 
 TRANS_scoring <- TRANS[rownames(TRANS) %in% names(scoringSig215),]
-scoringSig <- scoringSig215[names(scoringSig215) %in% rownames(TRANS_scoring),]
+scoringSig <- scoringSig215[names(scoringSig215) %in% rownames(TRANS_scoring)]
 
 #aggregate rows matching the same gene in one row by summing its expression
 TRANS_scoring <- aggregate(TRANS_scoring, by=list(rownames(TRANS_scoring)), sum)
